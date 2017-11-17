@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/PC-Portable-Flo/Documents/Projet Java A2/ProjetPMF/lib/RXTXcomm.jar">
+	<classpathentry kind="lib" path="lib/RXTXcomm.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/PC-Portable-Flo/Documents/Projet Java A2/ProjetPMF"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Projet PMF"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
