@@ -18,6 +18,7 @@ import java.awt.Color;
 
 public class PMFView extends JFrame implements IPMFView{
 
+	
 	private JPanel contentPane;
 	private JLabel lblTempc;
 	private JLabel lblHum;
@@ -92,23 +93,23 @@ public class PMFView extends JFrame implements IPMFView{
 		return icoFrigo;
 	}
 
-	@Override
-	public void setLblTempIn(String content) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setLblHum(String content) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setLblTempDesire(String content) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void setLblTempIn(String content) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void setLblHum(String content) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public void setLblTempDesire(String content) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 	
 }

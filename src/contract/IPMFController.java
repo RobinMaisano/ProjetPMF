@@ -1,15 +1,12 @@
 package contract;
 
+import java.awt.event.ActionEvent;
+import java.util.Observable;
+
 public interface IPMFController {
 
-	public void setModel(IPMFModel model);
+	public void actionPerformed(ActionEvent e);
 	
-	public void setView(IPMFView view);
-	
-	public void run();
-	
-	public void actionPerformed();
-	
-	public void update();
+	public void update(Observable o, Object arg);
 	
 }
