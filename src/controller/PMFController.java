@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,22 +8,22 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
-import Model.Frigo;
-import View.window;
+import model.PMFModel;
+import view.PMFView;
 
-public class windowcontroller implements Runnable, Observer, ActionListener {
+public class PMFController implements Runnable, Observer, ActionListener {
 		
-	private Frigo frigo;
-	private window view;
+	private PMFModel frigo;
+	private PMFView view;
 	
-	public windowcontroller(Frigo frigo) {
+	public PMFController(PMFModel frigo) {
 		frigo.addObserver(this);
 	}
 	
-	public Frigo getModel(){
+	public PMFModel getModel(){
 		return this.frigo;
 	}
-	public window getView(){
+	public PMFView getView(){
 		return this.view;
 	}
 	
@@ -32,7 +32,7 @@ public class windowcontroller implements Runnable, Observer, ActionListener {
 			System.err.println("Erreur, le lancement du controller");
 		}
 		
-		this.view = new window();
+		this.view = new PMFView();
 		this.view.getButPlus().addActionListener(this);
 		this.view.getButMoins().addActionListener(this);
 		this.getView().setVisible(true);
@@ -56,8 +56,8 @@ public class windowcontroller implements Runnable, Observer, ActionListener {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(o instanceof Frigo) {
-			Frigo frigo = (Frigo) o;
+		if(o instanceof PMFModel) {
+			PMFModel frigo = (PMFModel) o;
 			
 			String tempInt = String.format("Temp : %.2f °C", frigo.getTempInterieur());
 			String humInt = String.format("Hum : %.2f %%", frigo.getHumInterieur());

@@ -12,10 +12,10 @@ import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 
-public class CAD {
+public class PMFCAD {
 	public static OutputStream out;
 
-	public CAD() {
+	public PMFCAD() {
 		super();
 	}
 
@@ -34,8 +34,8 @@ public class CAD {
 				InputStream in = serialPort.getInputStream();
 				out = serialPort.getOutputStream();
 
-				(new Thread(new SerialReader(in))).start();
-				(new Thread(new SerialWriter(out))).start();
+			//	(new Thread(new SerialReader(in))).start();
+			//	(new Thread(new SerialWriter(out))).start();
 				
 				BufferedReader input = new BufferedReader(new InputStreamReader(in));//TODO Lire ligne de characères
 				
@@ -112,7 +112,7 @@ public class CAD {
 
 	public static void main(String[] args) {
 		try {
-			(new CAD()).connect("COM3");
+			(new PMFCAD()).connect("COM3");
 			Thread.sleep(2000);
 			String test = "R";
 			

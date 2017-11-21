@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class window extends JFrame {
+public class PMFView extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblTempc;
@@ -26,7 +26,7 @@ public class window extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public window() {
+	public PMFView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 774, 777);
 		contentPane = new JPanel();
@@ -57,7 +57,7 @@ public class window extends JFrame {
 		
 		JLabel icoFrigo = new JLabel("");
 		icoFrigo.setBounds(0, 0, 733, 734);
-		icoFrigo.setIcon(new ImageIcon(window.class.getResource("/view/fridge.png")));
+		icoFrigo.setIcon(new ImageIcon(PMFView.class.getResource("/view/fridge.png")));
 		contentPane.add(icoFrigo);
 	}
 

@@ -1,8 +1,8 @@
-package Model;
+package model;
 
 import java.util.Observable;
 
-public class Frigo extends Observable {
+public class PMFModel extends Observable {
 	
 	private float tempInterieur;
 	private float humInterieur;
@@ -28,7 +28,7 @@ public class Frigo extends Observable {
 		this.tempDsir = tempDsir;
 	}
 	
-	public Frigo(float tempInterieur, float humInterieur, float tempDsir) {
+	public PMFModel(float tempInterieur, float humInterieur, float tempDsir) {
 		super();
 		this.tempInterieur = tempInterieur;
 		this.humInterieur = humInterieur;
