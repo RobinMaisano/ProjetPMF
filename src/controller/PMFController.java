@@ -8,10 +8,13 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
+import contract.IPMFController;
+import contract.IPMFModel;
+import contract.IPMFView;
 import model.PMFModel;
 import view.PMFView;
 
-public class PMFController implements Runnable, Observer, ActionListener {
+public class PMFController implements Runnable, Observer, ActionListener, IPMFController{
 		
 	private PMFModel frigo;
 	private PMFView view;
@@ -73,6 +76,30 @@ public class PMFController implements Runnable, Observer, ActionListener {
 			}
 			
 		}
+		
+	}
+
+	@Override
+	public void setModel(IPMFModel model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setView(IPMFView view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
 		
 	}
 	

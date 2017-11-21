@@ -6,17 +6,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+import contract.IPMFCAD;
+import contract.IPMFModel;
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 
-public class PMFCAD {
+public class PMFCAD implements IPMFCAD{
+	
+	private IPMFModel model;
+	
 	public static OutputStream out;
 
-	public PMFCAD() {
-		super();
+	public PMFCAD(IPMFModel model) {
+		this.model = model;
 	}
 
 	void connect(String portName) throws Exception {
@@ -112,7 +117,7 @@ public class PMFCAD {
 
 	public static void main(String[] args) {
 		try {
-			(new PMFCAD()).connect("COM3");
+	//TODO		(new PMFCAD()).connect("COM3");
 			Thread.sleep(2000);
 			String test = "R";
 			
@@ -122,5 +127,17 @@ public class PMFCAD {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void setPower(int power) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 }

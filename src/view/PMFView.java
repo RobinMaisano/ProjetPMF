@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import contract.IPMFView;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -13,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class PMFView extends JFrame {
+public class PMFView extends JFrame implements IPMFView{
 
 	private JPanel contentPane;
 	private JLabel lblTempc;
@@ -87,6 +90,24 @@ public class PMFView extends JFrame {
 
 	public JLabel getIcoFrigo() {
 		return icoFrigo;
+	}
+
+	@Override
+	public void setLblTempIn(String content) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLblHum(String content) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setLblTempDesire(String content) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
