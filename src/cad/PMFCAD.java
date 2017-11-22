@@ -17,37 +17,31 @@ import gnu.io.SerialPortEventListener;
 
 public class PMFCAD implements IPMFCAD {
 
-	private final int refreshTime = 2000;
 	private IPMFModel model;
+	private final int refreshTime = 2000;
+	private int power = 0;
 	private String portName = "COM3";
+	private String dataReceived;
 	private SerialPort serialPort;
-
-	public static InputStream in;
-	public static OutputStream out;
+	private InputStream in;
+	private OutputStream out;
 
 	public PMFCAD(IPMFModel model) {
 		this.model = model;
-		
-		//Connection
+
+		// Connection
 		try {
 			CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
-
 			if (portIdentifier.isCurrentlyOwned()) {
 				System.out.println("Error: Port is currently in use");
 			} else {
 				CommPort commPort = portIdentifier.open(this.getClass().getName(), 2000);
-
 				if (commPort instanceof SerialPort) {
 					this.serialPort = (SerialPort) commPort;
 					serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
 							SerialPort.PARITY_NONE);
-
-					in = serialPort.getInputStream();
-					out = serialPort.getOutputStream();
-
-					// (new Thread(new SerialReader(in))).start();
-					// (new Thread(new SerialWriter(out))).start();
-
+					this.in = serialPort.getInputStream();
+					this.out = serialPort.getOutputStream();
 				} else {
 					System.out.println("Error: Only serial ports are handled by this example.");
 				}
@@ -55,33 +49,28 @@ public class PMFCAD implements IPMFCAD {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
-/*	public void connect(String portName) throws Exception {
-		CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
-		if (portIdentifier.isCurrentlyOwned()) {
-			System.out.println("Error: Port is currently in use");
-		} else {
-			CommPort commPort = portIdentifier.open(this.getClass().getName(), 2000);
-
-			if (commPort instanceof SerialPort) {
-				this.serialPort = (SerialPort) commPort;
-				serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
-						SerialPort.PARITY_NONE);
-
-				in = serialPort.getInputStream();
-				out = serialPort.getOutputStream();
-
-				// (new Thread(new SerialReader(in))).start();
-				// (new Thread(new SerialWriter(out))).start();
-
-			} else {
-				System.out.println("Error: Only serial ports are handled by this example.");
-			}
-		}
-	}*/
-
+	/*
+	 * public void connect(String portName) throws Exception {
+	 * CommPortIdentifier portIdentifier =
+	 * CommPortIdentifier.getPortIdentifier(portName); if
+	 * (portIdentifier.isCurrentlyOwned()) {
+	 * System.out.println("Error: Port is currently in use"); } else { CommPort
+	 * commPort = portIdentifier.open(this.getClass().getName(), 2000);
+	 * 
+	 * if (commPort instanceof SerialPort) { this.serialPort = (SerialPort)
+	 * commPort; serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8,
+	 * SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
+	 * 
+	 * in = serialPort.getInputStream(); out = serialPort.getOutputStream();
+	 * 
+	 * // (new Thread(new SerialReader(in))).start(); // (new Thread(new
+	 * SerialWriter(out))).start();
+	 * 
+	 * } else { System.out.
+	 * println("Error: Only serial ports are handled by this example."); } } }
+	 */
 
 	/** */
 	public static class SerialReader implements Runnable {
@@ -140,15 +129,7 @@ public class PMFCAD implements IPMFCAD {
 
 	@Override
 	public void setPower(int power) {
-		try {
-			// TODO Auto-generated method stub
-			String powerMessage = "power" + power;
-			out.write(powerMessage.getBytes());
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.power = power;
 	}
 
 	@Override
@@ -195,19 +176,47 @@ public class PMFCAD implements IPMFCAD {
 
 	}
 
-
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while(true){
+		while (true) {
 			try {
 				Thread.sleep(refreshTime);
-			} catch (InterruptedException e) {
+
+				BufferedReader input = new BufferedReader(new InputStreamReader(in));// TODO
+				// Lire ligne de characères
+
+				// TODO On crée un event listener pour voir si quelque chose se
+				// passe sur le port série
+				serialPort.addEventListener(new SerialPortEventListener() {
+
+					@Override
+					public void serialEvent(SerialPortEvent arg0) {
+						// TODO Si il y a un event
+						if (arg0.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
+							try {
+								// TODO On attend tant que le port n'est pas
+								// dispo (pour pas cut le message)
+								while (!input.ready())
+									;
+
+								// TODO On affiche ce qu'on a lu
+								dataReceived = input.readLine();
+								System.out.println("arg0 :" + dataReceived);
+							} catch (IOException e) {
+
+								e.printStackTrace();
+							}
+						}
+					}
+				});
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
+			// TODO On abonne l'event listener au port série
+			serialPort.notifyOnDataAvailable(true);
+
 		}
 	}
 }
