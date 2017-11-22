@@ -92,4 +92,8 @@ public class PMFView extends JFrame implements IPMFView{
 	public JLabel getIcoFrigo() {
 		return icoFrigo;
 	}
+	
+	public void setVisible(boolean b){
+		this.setVisible(b);
+	}
 }
