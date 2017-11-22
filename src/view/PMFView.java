@@ -59,10 +59,10 @@ public class PMFView extends JFrame implements IPMFView{
 		butMoins.setBounds(50, 300, 97, 37);
 		contentPane.add(butMoins);
 		
-		JLabel icoFrigo = new JLabel("");
-		icoFrigo.setBounds(0, 0, 733, 734);
-		icoFrigo.setIcon(new ImageIcon(PMFView.class.getResource("/view/fridge.png")));
-		contentPane.add(icoFrigo);
+		JLabel icoFrigo_1 = new JLabel("");
+		icoFrigo_1.setBounds(0, 0, 733, 734);
+		icoFrigo_1.setIcon(new ImageIcon(view.PMFView.class.getResource("/View/fridge.png")));
+		contentPane.add(icoFrigo_1);
 	}
 
 	public JPanel getContentPane() {
@@ -92,24 +92,4 @@ public class PMFView extends JFrame implements IPMFView{
 	public JLabel getIcoFrigo() {
 		return icoFrigo;
 	}
-
-//	@Override
-//	public void setLblTempIn(String content) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void setLblHum(String content) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void setLblTempDesire(String content) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-	
-	
 }
