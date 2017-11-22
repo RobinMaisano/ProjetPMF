@@ -1,9 +1,11 @@
 package contract;
 
-public interface IPMFCAD {
+import java.util.TooManyListenersException;
+
+public interface IPMFCAD extends Runnable{
 
 	public void setPower(int power);
 	
-	public void update();
+	public void update() throws TooManyListenersException ;
 	
 }

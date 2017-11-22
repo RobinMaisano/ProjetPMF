@@ -1,6 +1,8 @@
 package contract;
 
-public interface IPMFModel {
+import java.util.Observer;
+
+public interface IPMFModel{
 
 		public float getTempInterieure();
 		
@@ -14,4 +16,9 @@ public interface IPMFModel {
 		
 		public void setTempDesire(float tempDesire);
 		
+		public void hasBeenChanged();
+
+		public void notifObservers();
+		
+		public void addObserver(Observer o);
 }

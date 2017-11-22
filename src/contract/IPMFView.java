@@ -15,11 +15,15 @@ public interface IPMFView {
 //	public void setLblTempDesire(String content);
 
 	public JButton getButPlus();
+	
+	public JButton getButMoins();
 
 	public JLabel getLblTempc();
 
 	public JLabel getLblHum();
 
 	public JLabel getLblTempDsire();
+	
+	public void setVisible(boolean b);
 	
 }

@@ -7,41 +7,45 @@ import java.util.Observer;
 
 import javax.swing.JButton;
 
+import contract.IPMFCAD;
 import contract.IPMFController;
 import contract.IPMFModel;
 import contract.IPMFView;
 import model.PMFModel;
 import view.PMFView;
 
-public class PMFController implements Runnable, Observer, ActionListener, IPMFController {
+public class PMFController implements Observer, ActionListener, IPMFController {
 
 	// private PMFModel frigo;
 	// private PMFView view;
 
 	private IPMFModel model;
 	private IPMFView view;
+	private IPMFCAD cad;
 
-	// public PMFController(PMFModel frigo) {
-	// frigo.addObserver(this);
+	public PMFController(IPMFModel model, IPMFCAD cad) {
+		this.model = model;
+		this.cad = cad;
+	}
+
+	// public void start() {
+	// // thread = new Thread(this, "ThreadCtrl");
+	// // thread.start();
 	// }
 
-	public PMFController(IPMFModel model) {
-		this.model = model;
-	}
-
-	public IPMFModel getModel() {
-		return this.model;
-	}
-
-	public IPMFView getView() {
-		return this.view;
-	}
-
 	public void run() {
+		this.model.addObserver(this);
 
 		this.view = new PMFView();
 		this.view.getButPlus().addActionListener(this);
+		this.view.getButMoins().addActionListener(this);
 		this.view.setVisible(true);
+
+		Thread thread = new Thread(cad, "threadCAD");
+		thread.start();
+		
+		// Thread thread = new Thread(new PMFCAD(model), "threadCAD");
+		// thread.start();
 
 	}
 
@@ -60,16 +64,15 @@ public class PMFController implements Runnable, Observer, ActionListener, IPMFCo
 	public void actionPerformed(ActionEvent e) {
 		JButton button = (JButton) e.getSource();
 		if (button.getName().equals("butPlus")) {
-			this.model.setTempDesire(this.model.getTempDesire() + 1);
+			this.model.setTempDesire(checkTemp(this.model.getTempDesire() + 1));
+			this.view.getLblTempDsire().setText(Float.toString(this.model.getTempInterieure()));
 		} else if (button.getName().equals("butMoins")) {
-			this.model.setTempDesire(this.model.getTempDesire() - 1);
+			this.model.setTempDesire(checkTemp(this.model.getTempDesire() - 1));
+			this.view.getLblTempDsire().setText(Float.toString(this.model.getTempInterieure()));
 		} else {
 			System.out.println("Une erreur est apparu");
 			return;
 		}
-		this.model.hasBeenChanged();
-		this.model.notifyObservers();
-
 	}
 
 	@Override
@@ -91,5 +94,22 @@ public class PMFController implements Runnable, Observer, ActionListener, IPMFCo
 			// }
 
 		}
+	}
+
+	public IPMFModel getModel() {
+		return this.model;
+	}
+
+	public IPMFView getView() {
+		return this.view;
+	}
+
+	private float checkTemp(float consigne) {
+		float mini = 5, maxi = 20;
+		if (mini < consigne && consigne < maxi) {return consigne;}
+		else if (mini > consigne) {return mini;}
+		else if (maxi < consigne) {return maxi;} 
+		else return 18;
+
 	}
 }
