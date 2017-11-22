@@ -119,7 +119,7 @@ public class PMFCAD implements IPMFCAD {
 			Thread.sleep(2000);
 			String test = "R";
 
-			out.write(test.getBytes());
+			// out.write(test.getBytes());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -182,12 +182,15 @@ public class PMFCAD implements IPMFCAD {
 		while (true) {
 			try {
 				Thread.sleep(refreshTime);
-
+				
+				//On envoie sur le port série l'état que doit adopter le Peltier (0 ou 1)
+				out.write(power);
+				
 				BufferedReader input = new BufferedReader(new InputStreamReader(in));// TODO
 				// Lire ligne de characères
 
-				// TODO On crée un event listener pour voir si quelque chose se
-				// passe sur le port série
+				// On crée un event listener pour voir si quelque chose se passe
+				// sur le port série
 				serialPort.addEventListener(new SerialPortEventListener() {
 
 					@Override
@@ -197,19 +200,24 @@ public class PMFCAD implements IPMFCAD {
 							try {
 								// TODO On attend tant que le port n'est pas
 								// dispo (pour pas cut le message)
-								while (!input.ready())
-									;
+								while (!input.ready());
 
 								// TODO On affiche ce qu'on a lu
 								dataReceived = input.readLine();
 								System.out.println("arg0 :" + dataReceived);
 							} catch (IOException e) {
-
 								e.printStackTrace();
 							}
 						}
 					}
 				});
+				
+				if(dataReceived.length() != 3){
+					System.out.println("Données reçues invalides");
+				}else{
+					
+				}
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
