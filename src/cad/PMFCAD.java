@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.TooManyListenersException;
 
 import contract.IPMFCAD;
 import contract.IPMFModel;
@@ -16,7 +17,9 @@ import gnu.io.SerialPortEventListener;
 
 public class PMFCAD implements IPMFCAD {
 
+	private final int refreshTime = 2000;
 	private IPMFModel model;
+	private String portName = "COM3";
 	private SerialPort serialPort;
 
 	public static InputStream in;
@@ -24,9 +27,38 @@ public class PMFCAD implements IPMFCAD {
 
 	public PMFCAD(IPMFModel model) {
 		this.model = model;
+		
+		//Connection
+		try {
+			CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
+
+			if (portIdentifier.isCurrentlyOwned()) {
+				System.out.println("Error: Port is currently in use");
+			} else {
+				CommPort commPort = portIdentifier.open(this.getClass().getName(), 2000);
+
+				if (commPort instanceof SerialPort) {
+					this.serialPort = (SerialPort) commPort;
+					serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
+							SerialPort.PARITY_NONE);
+
+					in = serialPort.getInputStream();
+					out = serialPort.getOutputStream();
+
+					// (new Thread(new SerialReader(in))).start();
+					// (new Thread(new SerialWriter(out))).start();
+
+				} else {
+					System.out.println("Error: Only serial ports are handled by this example.");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
-	public void connect(String portName) throws Exception {
+/*	public void connect(String portName) throws Exception {
 		CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
 		if (portIdentifier.isCurrentlyOwned()) {
 			System.out.println("Error: Port is currently in use");
@@ -48,7 +80,8 @@ public class PMFCAD implements IPMFCAD {
 				System.out.println("Error: Only serial ports are handled by this example.");
 			}
 		}
-	}
+	}*/
+
 
 	/** */
 	public static class SerialReader implements Runnable {
@@ -119,7 +152,7 @@ public class PMFCAD implements IPMFCAD {
 	}
 
 	@Override
-	public void update() {
+	public void update() throws TooManyListenersException {
 		// TODO Auto-generated method stub
 		try {
 			out.write("update".getBytes());
@@ -160,5 +193,21 @@ public class PMFCAD implements IPMFCAD {
 		// TODO On abonne l'event listener au port série
 		serialPort.notifyOnDataAvailable(true);
 
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true){
+			try {
+				Thread.sleep(refreshTime);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		}
 	}
 }
