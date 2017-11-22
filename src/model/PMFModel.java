@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import contract.IPMFModel;
 
@@ -10,6 +11,12 @@ public class PMFModel extends Observable implements IPMFModel{
 	private float humInterieur;
 	private float tempDsir;
 	
+	public PMFModel(float tempInterieur, float humInterieur, float tempDsir) {
+		super();
+		this.tempInterieur = tempInterieur;
+		this.humInterieur = humInterieur;
+		this.tempDsir = tempDsir;
+	}
 	
 	public float getTempInterieur() {
 		return tempInterieur;
@@ -29,17 +36,19 @@ public class PMFModel extends Observable implements IPMFModel{
 	public void setTempDsir(float tempDsir) {
 		this.tempDsir = tempDsir;
 	}
-	
-	public PMFModel(float tempInterieur, float humInterieur, float tempDsir) {
-		super();
-		this.tempInterieur = tempInterieur;
-		this.humInterieur = humInterieur;
-		this.tempDsir = tempDsir;
+		
+	public void addObserver(Observer o){
+		addObserver(o);
 	}
 	
 	public void hasBeenChanged() {
 		setChanged();
 	}
+	
+	public void notifObservers(){
+		this.notifyObservers();
+	}
+	
 	@Override
 	public float getTempInterieure() {
 		// TODO Auto-generated method stub
@@ -69,7 +78,5 @@ public class PMFModel extends Observable implements IPMFModel{
 	public void setTempDesire(float tempDesire) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	
+	}	
 }
