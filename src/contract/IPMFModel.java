@@ -12,6 +12,10 @@ public interface IPMFModel{
 		
 		public void setHumInterieure(float humInt);
 	
+		public float getTempExterieure();
+		
+		public void setTempExterieure(float tempOut);
+		
 		public float getTempDesire();
 		
 		public void setTempDesire(float tempDesire);
