@@ -47,7 +47,7 @@ public class PMFCAD implements IPMFCAD {
 					this.in = serialPort.getInputStream();
 					this.out = serialPort.getOutputStream();
 				} else {
-					System.out.println("Error: Only serial ports are handled by this example.");
+					System.out.println("Error: Only serial ports are handled.");
 				}
 			}
 		} catch (Exception e) {
@@ -76,51 +76,6 @@ public class PMFCAD implements IPMFCAD {
 	 * println("Error: Only serial ports are handled by this example."); } } }
 	 */
 
-	/** */
-	public static class SerialReader implements Runnable {
-		InputStream in;
-
-		public SerialReader(InputStream in) {
-			this.in = in;
-		}
-
-		public void run() {
-			byte[] buffer = new byte[1024];
-			int len = -1;
-			try {
-				while ((len = this.in.read(buffer)) > -1) {
-					System.out.print(new String(buffer, 0, len));
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	/** */
-	public static class SerialWriter implements Runnable {
-		OutputStream out;
-
-		public SerialWriter(OutputStream out) {
-			this.out = out;
-		}
-
-		public void run() {
-			try {
-				int c = 0;
-				while ((c = System.in.read()) > -1) {
-					this.out.write(c);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	@Override
-	public void setPower(int power) {
-		this.power = power;
-	}
 
 	@Override
 	public void run() {
@@ -188,7 +143,11 @@ public class PMFCAD implements IPMFCAD {
 			}
 			// TODO On abonne l'event listener au port série
 			serialPort.notifyOnDataAvailable(true);
-
 		}
+	}
+	
+	@Override
+	public void setPower(int power) {
+		this.power = power;
 	}
 }

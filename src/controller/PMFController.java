@@ -43,9 +43,6 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 
 		Thread thread = new Thread(cad, "threadCAD");
 		thread.start();
-		
-		// Thread thread = new Thread(new PMFCAD(model), "threadCAD");
-		// thread.start();
 
 	}
 
@@ -65,51 +62,60 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 		JButton button = (JButton) e.getSource();
 		if (button.getName().equals("butPlus")) {
 			this.model.setTempDesire(checkTemp(this.model.getTempDesire() + 1));
-			this.view.getLblTempDsire().setText(Float.toString(this.model.getTempInterieure()));
+			this.view.getLblTempDsire().setText(String.format("Temp désirée : %.2f °C", this.model.getTempDesire()));
 		} else if (button.getName().equals("butMoins")) {
 			this.model.setTempDesire(checkTemp(this.model.getTempDesire() - 1));
-			this.view.getLblTempDsire().setText(Float.toString(this.model.getTempInterieure()));
+			this.view.getLblTempDsire().setText(String.format("Temp désirée : %.2f °C", this.model.getTempDesire()));
 		} else {
 			System.out.println("Une erreur est apparu");
 			return;
 		}
+		
+		updatePower();
+		
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		if (o instanceof PMFModel) {
 
-			PMFModel frigo = (PMFModel) o;
-			String tempInt = String.format("Temp : %.2f °C", frigo.getTempInterieure());
-			String tempDsr = String.format("Temp désirée : %.2f °C", frigo.getTempDesire());
-			String humInt = String.format("Hum : %.2f %%", frigo.getHumInterieure());
+			String tempInt = String.format("Temp in : %.2f °C", this.model.getTempInterieure());
+			String tempOut = String.format("Temp out : %.2f °C", this.model.getTempExterieure());
+			String tempDsr = String.format("Temp désirée : %.2f °C", this.model.getTempDesire());
+			String humInt = String.format("Hum : %.2f %%", this.model.getHumInterieure());
 			view.getLblTempc().setText(tempInt);
+			view.getLblTempOut().setText(tempOut);
 			view.getLblTempDsire().setText(tempDsr);
 			view.getLblHum().setText(humInt);
 
-			// if (frigo.getTempInterieur() <= frigo.getTempDsir()) {
-			//
-			// } else {
-			//
-			// }
+			updatePower();
+			
+			this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
 
 		}
 	}
 
+	public float checkTemp(float consigne) {
+		float mini = 5, maxi = 20;
+		if (mini < consigne && consigne < maxi) {return consigne;}
+		else if (mini > consigne) {return mini;}
+		else if (maxi < consigne) {return maxi;} 
+		else return 18;
+	}
+	
+	public void updatePower(){
+		if(this.model.getTempDesire() > this.model.getTempInterieure()+0.2){
+			this.cad.setPower(1);
+		}else{
+			this.cad.setPower(0);
+		}
+	}
+	
 	public IPMFModel getModel() {
 		return this.model;
 	}
 
 	public IPMFView getView() {
 		return this.view;
-	}
-
-	private float checkTemp(float consigne) {
-		float mini = 5, maxi = 20;
-		if (mini < consigne && consigne < maxi) {return consigne;}
-		else if (mini > consigne) {return mini;}
-		else if (maxi < consigne) {return maxi;} 
-		else return 18;
-
 	}
 }
