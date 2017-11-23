@@ -80,9 +80,9 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 		if (o instanceof PMFModel) {
 
 			PMFModel frigo = (PMFModel) o;
-			String tempInt = String.format("Temp : %.2f °C", frigo.getTempInterieur());
-			String tempDsr = String.format("Temp désirée : %.2f °C", frigo.getTempDsir());
-			String humInt = String.format("Hum : %.2f %%", frigo.getHumInterieur());
+			String tempInt = String.format("Temp : %.2f °C", frigo.getTempInterieure());
+			String tempDsr = String.format("Temp désirée : %.2f °C", frigo.getTempDesire());
+			String humInt = String.format("Hum : %.2f %%", frigo.getHumInterieure());
 			view.getLblTempc().setText(tempInt);
 			view.getLblTempDsire().setText(tempDsr);
 			view.getLblHum().setText(humInt);

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.TooManyListenersException;
 
 import contract.IPMFCAD;
 import contract.IPMFModel;
@@ -19,9 +18,14 @@ public class PMFCAD implements IPMFCAD {
 
 	private IPMFModel model;
 	private final int refreshTime = 2000;
+	private boolean modelChanged = false;
 	private int power = 0;
+	private float tIn;
+	private float tOut;
+	private float hum;
 	private String portName = "COM3";
 	private String dataReceived;
+	private String[] listStr;
 	private SerialPort serialPort;
 	private InputStream in;
 	private OutputStream out;
@@ -113,67 +117,9 @@ public class PMFCAD implements IPMFCAD {
 		}
 	}
 
-	public static void main(String[] args) {
-		try {
-			// TODO (new PMFCAD()).connect("COM3");
-			Thread.sleep(2000);
-			String test = "R";
-
-			// out.write(test.getBytes());
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	@Override
 	public void setPower(int power) {
 		this.power = power;
-	}
-
-	@Override
-	public void update() throws TooManyListenersException {
-		// TODO Auto-generated method stub
-		try {
-			out.write("update".getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		BufferedReader input = new BufferedReader(new InputStreamReader(in));// TODO
-		// Lire
-		// ligne
-		// de
-		// characères
-
-		// TODO On crée un event listener pour voir si quelque chose se
-		// passe sur le port série
-		serialPort.addEventListener(new SerialPortEventListener() {
-
-			@Override
-			public void serialEvent(SerialPortEvent arg0) {
-				// TODO Si il y a un event
-				if (arg0.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-					try {
-						// TODO On attend tant que le port n'est pas
-						// dispo (pour pas cut le message)
-						while (!input.ready())
-							;
-						// TODO On affiche ce qu'on a lu
-						String dataReceived = input.readLine();
-						System.out.println("arg0 :" + dataReceived);
-					} catch (IOException e) {
-
-						e.printStackTrace();
-					}
-				}
-
-			}
-		});
-		// TODO On abonne l'event listener au port série
-		serialPort.notifyOnDataAvailable(true);
-
 	}
 
 	@Override
@@ -212,12 +158,30 @@ public class PMFCAD implements IPMFCAD {
 					}
 				});
 				
-				if(dataReceived.length() != 3){
-					System.out.println("Données reçues invalides");
-				}else{
-					
-				}
+				listStr = dataReceived.split(";");
 				
+				hum = Float.parseFloat(listStr[0]);
+				tIn = Float.parseFloat(listStr[1]);
+				tOut = Float.parseFloat(listStr[2]);
+				
+				if(this.hum != model.getHumInterieure()){
+					model.setHumInterieure(hum);
+					modelChanged = true;
+				}
+				if(this.tIn != model.getTempInterieure()){
+					model.setTempInterieure(tIn);
+					modelChanged = true;
+				}
+				if(this.tOut != model.getTempExterieure()){
+					model.setTempExterieure(tOut);
+					modelChanged = true;
+				}
+				if(modelChanged){
+					model.hasBeenChanged();
+					model.notifObservers();
+					modelChanged = false;
+				}
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

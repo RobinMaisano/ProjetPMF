@@ -8,6 +8,7 @@ import contract.IPMFModel;
 public class PMFModel extends Observable implements IPMFModel{
 	
 	private float tempInterieur;
+	private float tempExterieure;
 	private float humInterieur;
 	private float tempDsir;
 	
@@ -17,66 +18,49 @@ public class PMFModel extends Observable implements IPMFModel{
 		this.humInterieur = humInterieur;
 		this.tempDsir = tempDsir;
 	}
-	
-	public float getTempInterieur() {
-		return tempInterieur;
-	}
-	public void setTempInterieur(float tempInterieur) {
-		this.tempInterieur = tempInterieur;
-	}
-	public float getHumInterieur() {
-		return humInterieur;
-	}
-	public void setHumInterieur(float humInterieur) {
-		this.humInterieur = humInterieur;
-	}
-	public float getTempDsir() {
-		return tempDsir;
-	}
-	public void setTempDsir(float tempDsir) {
-		this.tempDsir = tempDsir;
-	}
-		
-	public void addObserver(Observer o){
-		addObserver(o);
-	}
-	
-	public void hasBeenChanged() {
-		setChanged();
-	}
-	
-	public void notifObservers(){
-		this.notifyObservers();
-	}
-	
 	@Override
 	public float getTempInterieure() {
-		// TODO Auto-generated method stub
-		return 0;
+		return tempInterieur;
 	}
 	@Override
-	public void setTempInterieure(float tempInt) {
-		// TODO Auto-generated method stub
-		
+	public void setTempInterieure(float tempInterieur) {
+		this.tempInterieur = tempInterieur;
 	}
 	@Override
 	public float getHumInterieure() {
-		// TODO Auto-generated method stub
-		return 0;
+		return humInterieur;
 	}
 	@Override
-	public void setHumInterieure(float humInt) {
-		// TODO Auto-generated method stub
-		
+	public void setHumInterieure(float humInterieur) {
+		this.humInterieur = humInterieur;
 	}
 	@Override
 	public float getTempDesire() {
-		// TODO Auto-generated method stub
-		return 0;
+		return tempDsir;
 	}
 	@Override
-	public void setTempDesire(float tempDesire) {
-		// TODO Auto-generated method stub
-		
-	}	
+	public void setTempDesire(float tempDsir) {
+		this.tempDsir = tempDsir;
+	}
+	@Override
+	public void addObserver(Observer o){
+		addObserver(o);
+	}
+	@Override
+	public void hasBeenChanged() {
+		setChanged();
+	}
+	@Override
+	public void notifObservers(){
+		this.notifyObservers();
+	}
+	@Override
+	public float getTempExterieure() {
+		return this.tempExterieure;
+	}
+	@Override
+	public void setTempExterieure(float tempOut) {
+		this.tempExterieure = tempOut;
+	}
+	
 }

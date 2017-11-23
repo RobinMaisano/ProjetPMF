@@ -32,10 +32,11 @@ public class main {
 		 //* soit dans le main soit dans le run ctrl
 		 //* on créé un nouveau thread, on y met la cad
 		 * 
-		 * la CAD se lance avec un .start et sur un while1 qui met a jour tout le temps
-		 * elle vérifie si les infos par rapport au modele ont changé
-		 * si oui, elle lance le notify observers
-		 * ça trigger le ctrl qui recup les infos et met a jour la vue
+		 //* la CAD se lance avec un .start et sur un while1 qui met a jour tout le temps
+		 //* elle vérifie si les infos par rapport au modele ont changé
+		 //* si oui, elle lance le notify observers
+		 //* ça trigger le ctrl
+		 * qui recup les infos et met a jour la vue
 		 * 
 		 * 
 		 * 
