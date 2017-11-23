@@ -21,9 +21,15 @@ public interface IPMFView {
 	public JLabel getLblTempc();
 
 	public JLabel getLblHum();
+	
+	public JLabel getLblTempOut();
 
 	public JLabel getLblTempDsire();
 	
 	public void setVisible(boolean b);
+
+	public void updateGraph(float tempInterieure, float tempExterieure);
+	
+	public void setWarn(boolean b);
 	
 }
