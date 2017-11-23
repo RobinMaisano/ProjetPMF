@@ -6,8 +6,8 @@
         <field id="tpd5" name="Date de fin" width="11" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nom" width="52" order="0"/>
-        <field id="1" name="Rôle par défaut" width="47" order="1"/>
+        <field id="0" name="Nom" width="50" order="0"/>
+        <field id="1" name="Rôle par défaut" width="49" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -43,76 +43,72 @@
             <depend id="3" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="3" name="GANTT" meeting="false" start="2017-11-09" duration="1" complete="0" expand="true"/>
-        <task id="4" name="Mini Frigo" color="#000000" meeting="false" start="2017-11-20" duration="4" complete="0" expand="true">
-            <task id="6" name="Boitier" meeting="false" start="2017-11-20" duration="1" complete="0" expand="true">
-                <depend id="9" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="9" name="Peltier" color="#8cb6ce" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                <depend id="8" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="8" name="Ventialteur" meeting="false" start="2017-11-22" duration="1" complete="0" expand="true">
-                <depend id="10" type="2" difference="0" hardness="Strong"/>
-            </task>
-            <task id="10" name="Arduino" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true">
-                <task id="11" name="Montage" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true">
-                    <task id="13" name="Fonctionnement composants" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
-                    <task id="14" name="Montage Electrique" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
-                    <task id="15" name="Fixation / Installation" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
+        <task id="4" name="Mini Frigo" color="#000000" meeting="false" start="2017-11-10" duration="6" complete="0" expand="true">
+            <task id="6" name="Boitier" color="#8cb6ce" meeting="false" start="2017-11-10" duration="1" complete="0" expand="true"/>
+            <task id="9" name="Peltier" color="#8cb6ce" meeting="false" start="2017-11-10" duration="1" complete="0" expand="true"/>
+            <task id="8" name="Ventialteur" meeting="false" start="2017-11-10" duration="1" complete="0" expand="true"/>
+            <task id="10" name="Arduino" color="#000000" meeting="false" start="2017-11-13" duration="5" complete="0" expand="true">
+                <task id="11" name="Montage" color="#000000" meeting="false" start="2017-11-13" duration="1" complete="0" expand="true">
+                    <depend id="16" type="2" difference="0" hardness="Strong"/>
+                    <task id="13" name="Fonctionnement composants" color="#8cb6ce" meeting="false" start="2017-11-13" duration="1" complete="0" expand="true"/>
+                    <task id="14" name="Montage Electrique" color="#8cb6ce" meeting="false" start="2017-11-13" duration="1" complete="0" expand="true"/>
+                    <task id="15" name="Fixation / Installation" meeting="false" start="2017-11-13" duration="1" complete="0" expand="true"/>
                 </task>
-                <task id="16" name="Programation" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true">
-                    <task id="17" name="Récupération de données" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true">
-                        <task id="18" name="Température intérieure" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
-                        <task id="19" name="Température Extérieure" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
-                        <task id="20" name="Humidité Intérieure" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
+                <task id="16" name="Programation" meeting="false" start="2017-11-16" duration="2" complete="0" expand="true">
+                    <task id="17" name="Récupération de données" meeting="false" start="2017-11-16" duration="1" complete="0" expand="true">
+                        <depend id="21" type="2" difference="0" hardness="Strong"/>
+                        <task id="18" name="Température intérieure" meeting="false" start="2017-11-16" duration="1" complete="0" expand="true"/>
+                        <task id="19" name="Température Extérieure" meeting="false" start="2017-11-16" duration="1" complete="0" expand="true"/>
+                        <task id="20" name="Humidité Intérieure" meeting="false" start="2017-11-16" duration="1" complete="0" expand="true"/>
                     </task>
-                    <task id="21" name="Envoi des données" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
-                    <task id="22" name="Lectures des données" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
+                    <task id="21" name="Envoi des données" color="#8cb6ce" meeting="false" start="2017-11-17" duration="1" complete="0" expand="true"/>
+                    <task id="22" name="Lectures des données" meeting="false" start="2017-11-17" duration="1" complete="0" expand="true"/>
                 </task>
             </task>
         </task>
-        <task id="23" name="Application" color="#8cb6ce" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-            <task id="25" name="Données (Frigo)" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                <task id="26" name="Température intérieure" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                    <task id="27" name="Récupérer" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                    <task id="28" name="Notifier" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
+        <task id="23" name="Application" color="#8cb6ce" meeting="false" start="2017-11-20" duration="4" complete="0" expand="true">
+            <task id="25" name="Données (Frigo)" meeting="false" start="2017-11-20" duration="4" complete="0" expand="true">
+                <task id="26" name="Température intérieure" meeting="false" start="2017-11-20" duration="2" complete="0" expand="true">
+                    <task id="27" name="Récupérer" meeting="false" start="2017-11-20" duration="1" complete="0" expand="true"/>
+                    <task id="28" name="Notifier" meeting="false" start="2017-11-20" duration="1" complete="0" expand="true"/>
                     <task id="29" name="Afficher" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
                 </task>
-                <task id="30" name="Température Extérieure" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                    <task id="32" name="Récupérer" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                    <task id="34" name="Notifier" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
+                <task id="30" name="Température Extérieure" meeting="false" start="2017-11-20" duration="2" complete="0" expand="true">
+                    <task id="32" name="Récupérer" meeting="false" start="2017-11-20" duration="1" complete="0" expand="true"/>
+                    <task id="34" name="Notifier" color="#8cb6ce" meeting="false" start="2017-11-20" duration="1" complete="0" expand="true"/>
                     <task id="36" name="Afficher" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
                 </task>
-                <task id="38" name="Humidité Air" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                    <task id="40" name="Récupérer" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                    <task id="42" name="Notifier" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                    <task id="44" name="Afficher" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
+                <task id="38" name="Humidité Air" meeting="false" start="2017-11-20" duration="2" complete="0" expand="true">
+                    <task id="40" name="Récupérer" color="#8cb6ce" meeting="false" start="2017-11-20" duration="1" complete="0" expand="true"/>
+                    <task id="42" name="Notifier" color="#8cb6ce" meeting="false" start="2017-11-20" duration="1" complete="0" expand="true"/>
+                    <task id="44" name="Afficher" color="#8cb6ce" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
                 </task>
-                <task id="50" name="Graph Température" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                    <task id="51" name="Traiter en fonction des anciennes données" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                    <task id="52" name="Afficher" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
+                <task id="50" name="Graph Température" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true">
+                    <task id="51" name="Traiter en fonction des anciennes données" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
+                    <task id="52" name="Afficher" color="#8cb6ce" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
                 </task>
-                <task id="53" name="Porte Ouverte" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                    <task id="54" name="Traitement des données" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                    <task id="55" name="Afficher" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                </task>
-            </task>
-            <task id="45" name="Données (utilisateur)" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                <task id="46" name="Température consigne" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                    <task id="47" name="Définition" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                    <task id="48" name="Notification" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                    <task id="49" name="Afficher" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
+                <task id="53" name="Porte Ouverte" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true">
+                    <task id="54" name="Traitement des données" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
+                    <task id="55" name="Afficher" color="#8cb6ce" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
                 </task>
             </task>
-            <task id="56" name="Calcul Prog" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                <task id="57" name="Traitement des données" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
+            <task id="45" name="Données (utilisateur)" meeting="false" start="2017-11-22" duration="1" complete="0" expand="true">
+                <task id="46" name="Température consigne" meeting="false" start="2017-11-22" duration="1" complete="0" expand="true">
+                    <task id="47" name="Définition" color="#8cb6ce" meeting="false" start="2017-11-22" duration="1" complete="0" expand="true"/>
+                    <task id="48" name="Notification" meeting="false" start="2017-11-22" duration="1" complete="0" expand="true"/>
+                    <task id="49" name="Afficher" meeting="false" start="2017-11-22" duration="1" complete="0" expand="true"/>
+                </task>
             </task>
-            <task id="58" name="PID" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                <task id="59" name="Traitement des données" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                <task id="60" name="Action sur Peltier" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
+            <task id="56" name="Calcul Prog" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true">
+                <task id="57" name="Traitement des données" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
             </task>
-            <task id="61" name="Température intérieur = Température consigne" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true">
-                <task id="62" name="Traitement des données" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
-                <task id="63" name="Action" meeting="false" start="2017-11-21" duration="1" complete="0" expand="true"/>
+            <task id="58" name="PID" meeting="false" start="2017-11-22" duration="2" complete="0" expand="true">
+                <task id="59" name="Traitement des données" color="#8cb6ce" meeting="false" start="2017-11-22" duration="1" complete="0" expand="true"/>
+                <task id="60" name="Action sur Peltier" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
+            </task>
+            <task id="61" name="Température intérieur = Température consigne" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true">
+                <task id="62" name="Traitement des données" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
+                <task id="63" name="Action" color="#8cb6ce" meeting="false" start="2017-11-23" duration="1" complete="0" expand="true"/>
             </task>
         </task>
     </tasks>
