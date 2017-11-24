@@ -14,7 +14,6 @@ public class main {
 		PMFCAD cad = new PMFCAD(model);
 		PMFController ctrl = new PMFController(model, cad);
 		SwingUtilities.invokeLater(ctrl);
-
 	}
 
 }

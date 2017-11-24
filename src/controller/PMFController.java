@@ -1,9 +1,7 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JButton;
 
@@ -14,7 +12,7 @@ import contract.IPMFView;
 import model.PMFModel;
 import view.PMFView;
 
-public class PMFController implements Observer, ActionListener, IPMFController {
+public class PMFController implements IPMFController {
 
 
 	private IPMFModel model;
@@ -102,11 +100,4 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 //		float tRosee = (237,7 * ((17.27*tdesire)/(237.7+tdesire)+ log(humid)))/(17.27-((17.27*tdesire)/(237.7+tdesire)+log(humid)));
 //	}
 	
-	public IPMFModel getModel() {
-		return this.model;
-	}
-
-	public IPMFView getView() {
-		return this.view;
-	}
 }
