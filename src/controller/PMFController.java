@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+import java.math.*;
 
 import javax.swing.JButton;
 
@@ -34,28 +35,17 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 	// }
 
 	public void run() {
-		this.model.addObserver(this);
+	//TODO	this.model.addObserver(this);
 
-		this.view = new PMFView();
-		this.view.getButPlus().addActionListener(this);
-		this.view.getButMoins().addActionListener(this);
-		this.view.setVisible(true);
+//	TODO	this.view = new PMFView();
+//		this.view.getButPlus().addActionListener(this);
+//		this.view.getButMoins().addActionListener(this);
+//		this.view.setVisible(true);
 
 		Thread thread = new Thread(cad, "threadCAD");
 		thread.start();
 
 	}
-
-	// public void run(){
-	// if (!SwingUtilities.isEventDispatchThread()){
-	// System.err.println("Erreur, le lancement du controller");
-	// }
-	//
-	// this.view = new PMFView();
-	// this.view.getButPlus().addActionListener(this);
-	// this.view.getButMoins().addActionListener(this);
-	// this.getView().setVisible(true);
-	// }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -71,6 +61,8 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 			return;
 		}
 		
+	//	updateRosee();
+		
 		updatePower();
 		
 	}
@@ -84,13 +76,13 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 			String tempDsr = String.format("Temp désirée : %.2f °C", this.model.getTempDesire());
 			String humInt = String.format("Hum : %.2f %%", this.model.getHumInterieure());
 			view.getLblTempc().setText(tempInt);
-			view.getLblTempOut().setText(tempOut);
+	//TODO		view.getLblTempOut().setText(tempOut);
 			view.getLblTempDsire().setText(tempDsr);
 			view.getLblHum().setText(humInt);
 
 			updatePower();
 			
-			this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
+	//TODO		this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
 
 		}
 	}
@@ -110,6 +102,13 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 			this.cad.setPower(0);
 		}
 	}
+	
+//	private void updateRosee() {
+//		float tdesire = this.model.getTempDesire();
+//		float humid = this.model.getHumInterieure();
+//		float firstpart = 17.27*tdesire;
+//		float tRosee = (237,7 * ((17.27*tdesire)/(237.7+tdesire)+ log(humid)))/(17.27-((17.27*tdesire)/(237.7+tdesire)+log(humid)));
+//	}
 	
 	public IPMFModel getModel() {
 		return this.model;

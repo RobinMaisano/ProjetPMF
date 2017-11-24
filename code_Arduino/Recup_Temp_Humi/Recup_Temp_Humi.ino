@@ -45,6 +45,6 @@ void loop() {
   Serial.print(h);
   Serial.print("  Temperature Capteur : ");
   Serial.println(t);
-
+  
   delay(2000);
 }

@@ -11,12 +11,14 @@ public class PMFModel extends Observable implements IPMFModel{
 	private float tempExterieure;
 	private float humInterieur;
 	private float tempDsir;
+	private boolean modelChanged = false;
 	
-	public PMFModel(float tempInterieur, float humInterieur, float tempDsir) {
+	public PMFModel() {
 		super();
-		this.tempInterieur = tempInterieur;
-		this.humInterieur = humInterieur;
-		this.tempDsir = tempDsir;
+		this.tempInterieur = 0;
+		this.tempExterieure = 0;
+		this.humInterieur = 0;
+		this.tempDsir = 0;
 	}
 	@Override
 	public float getTempInterieure() {
@@ -44,16 +46,17 @@ public class PMFModel extends Observable implements IPMFModel{
 	}
 	@Override
 	public void addObserver(Observer o){
-		addObserver(o);
+		this.addObserver(o);
 	}
 	@Override
 	public void hasBeenChanged() {
-		setChanged();
+		this.setChanged();
 	}
 	@Override
 	public void notifObservers(){
 		this.notifyObservers();
 	}
+
 	@Override
 	public float getTempExterieure() {
 		return this.tempExterieure;
@@ -61,6 +64,27 @@ public class PMFModel extends Observable implements IPMFModel{
 	@Override
 	public void setTempExterieure(float tempOut) {
 		this.tempExterieure = tempOut;
+	}
+	@Override
+	public void testData(float hum, float tIn, float tOut) {
+		
+		if(hum != this.getHumInterieure()){
+			this.setHumInterieure(hum);
+			this.modelChanged = true;
+		}
+		if(tIn != this.getTempInterieure()){
+			this.setTempInterieure(tIn);
+			this.modelChanged = true;
+		}
+		if(tOut != this.getTempExterieure()){
+			this.setTempExterieure(tOut);
+			this.modelChanged = true;
+		}
+		if(this.modelChanged){
+			this.hasBeenChanged();
+			this.notifObservers();
+			this.modelChanged = false;
+		}	
 	}
 	
 }

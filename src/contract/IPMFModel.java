@@ -25,4 +25,6 @@ public interface IPMFModel{
 		public void notifObservers();
 		
 		public void addObserver(Observer o);
+
+		public void testData(float hum, float tIn, float tOut);
 }

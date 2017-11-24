@@ -8,9 +8,9 @@ import model.PMFModel;
 
 public class main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
-		PMFModel model = new PMFModel(0, 0, 0);
+		PMFModel model = new PMFModel();
 		PMFCAD cad = new PMFCAD(model);
 		PMFController ctrl = new PMFController(model, cad);
 		SwingUtilities.invokeLater(ctrl);
@@ -46,13 +46,6 @@ public class main {
 		 * la vue affiche le graph
 		 * 
 		*/
-		
-		
-		
-		
-		
-		
-		ctrl.run();
 	}
 
 }
