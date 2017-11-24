@@ -25,26 +25,40 @@ void loop() {
 
   U2 = analogRead(analog)*5.0/1024.0;
   //Affichage de la tension aux bornes de la thermistance
-  Serial.print("Tension aux bornes : ");
-  Serial.println(U2);
+//  Serial.print("Tension aux bornes : ");
+//  Serial.println(U2);
 
   //On trouve la valeur de la résistance
   R2 = (U2 * R1)/(U - U2);
-  Serial.print("Resistance Thermistance : ");
-  Serial.println(R2);
+ // Serial.print("Resistance Thermistance : ");
+ // Serial.println(R2);
 
   //On applique SteinhartHart pour trouver la température
   temperature = (1.0/(coefA + coefB*log(R2) + coefC*pow(log(R2),3)))-273.15;
-  Serial.print("Temperature Thermistance : ");
-  Serial.println(temperature);
+ // Serial.print("Temperature Thermistance : ");
+ // Serial.println(temperature);
 
   //Récupération température et humidité
   float h = dht.readHumidity();
   float t = dht.readTemperature();
-  Serial.print("Humidite Capteur : ");
+//  Serial.print("Humidite Capteur : ");
+//  Serial.print(h);
+//  Serial.print("  Temperature Capteur : ");
+//  Serial.println(t);
+
   Serial.print(h);
-  Serial.print("  Temperature Capteur : ");
-  Serial.println(t);
-  
-  delay(2000);
+  Serial.print(";");
+  Serial.print(t);
+  Serial.print(";");
+  Serial.println(temperature);
+
+  while(Serial.available() > 0){
+    if(Serial.read() == 1){
+      digitalWrite(8, HIGH);
+    }else if(Serial.read() == 0){
+      digitalWrite(8, LOW);
+    }
+  }
+
+  delay(5000);
 }
