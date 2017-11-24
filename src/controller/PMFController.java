@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
-import java.math.*;
 
 import javax.swing.JButton;
 
@@ -17,8 +16,6 @@ import view.PMFView;
 
 public class PMFController implements Observer, ActionListener, IPMFController {
 
-	// private PMFModel frigo;
-	// private PMFView view;
 
 	private IPMFModel model;
 	private IPMFView view;
@@ -29,18 +26,13 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 		this.cad = cad;
 	}
 
-	// public void start() {
-	// // thread = new Thread(this, "ThreadCtrl");
-	// // thread.start();
-	// }
-
 	public void run() {
-	//TODO	this.model.addObserver(this);
+		this.model.addObserver(this);
 
-//	TODO	this.view = new PMFView();
-//		this.view.getButPlus().addActionListener(this);
-//		this.view.getButMoins().addActionListener(this);
-//		this.view.setVisible(true);
+		this.view = new PMFView();
+		this.view.getButPlus().addActionListener(this);
+		this.view.getButMoins().addActionListener(this);
+		this.view.setVisible(true);
 
 		Thread thread = new Thread(cad, "threadCAD");
 		thread.start();
@@ -76,13 +68,13 @@ public class PMFController implements Observer, ActionListener, IPMFController {
 			String tempDsr = String.format("Temp désirée : %.2f °C", this.model.getTempDesire());
 			String humInt = String.format("Hum : %.2f %%", this.model.getHumInterieure());
 			view.getLblTempc().setText(tempInt);
-	//TODO		view.getLblTempOut().setText(tempOut);
+			view.getLblTempOut().setText(tempOut);
 			view.getLblTempDsire().setText(tempDsr);
 			view.getLblHum().setText(humInt);
 
 			updatePower();
 			
-	//TODO		this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
+			this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
 
 		}
 	}
