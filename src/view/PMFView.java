@@ -110,7 +110,10 @@ public class PMFView extends JFrame implements IPMFView{
 		contentPane.add(icoFrigo);
 		
 	}
-
+	/**
+	 * Create first data of the chart
+	 * @return
+	 */
 	private XYDataset createDateset() {
 		this.tempInt.add(0.0,1.0);
 		
@@ -151,7 +154,9 @@ public class PMFView extends JFrame implements IPMFView{
 	public JLabel getIcoFrigo() {
 		return icoFrigo;
 	}
-	
+	/**
+	 * @param boolean b boolean to set Visible the frame
+	 */
 	public void setVisible(boolean b){
 		this.setVisible(b);
 	}
@@ -159,7 +164,7 @@ public class PMFView extends JFrame implements IPMFView{
 	public JLabel getLblTempOut() {
 		return lblTempOut;
 	}
-
+	
 	@Override
 	public void updateGraph(float tempInterieure, float tempExterieure) {
 		
@@ -172,7 +177,12 @@ public class PMFView extends JFrame implements IPMFView{
 			}
 		
 	}
-
+	
+	/**
+	 * add param to lines Chart
+	 * @param tempInterieure float temperature
+	 * @param tempExterieure float temperature
+	 */
 	private void addToChart(float tempInterieure, float tempExterieure) {
 		this.tempInt.add((double) this.iTime, (double) tempInterieure);
 		this.tempOut.add((double) this.iTime, (double) tempExterieure);
@@ -180,7 +190,7 @@ public class PMFView extends JFrame implements IPMFView{
 		this.datasetSeries.notify();
 		
 	}
-
+	
 	@Override
 	public void setWarn(boolean b) {
 		this.lblPointDeRos.setVisible(b);
