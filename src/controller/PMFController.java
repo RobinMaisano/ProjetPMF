@@ -67,16 +67,30 @@ public class PMFController implements IPMFController {
 			String tempOut = String.format("Temp out : %.2f °C", this.model.getTempExterieure());
 			String tempDsr = String.format("Temp désirée : %.2f °C", this.model.getTempDesire());
 			String humInt = String.format("Hum : %.2f %%", this.model.getHumInterieure());
-			view.getLblTempc().setText(tempInt);
-			view.getLblTempOut().setText(tempOut);
-			view.getLblTempDsire().setText(tempDsr);
-			view.getLblHum().setText(humInt);
+			
+			String pointRosee = String.format("Point de rosée à : %.2f °C", calculRosee(this.model.getHumInterieure(), this.model.getTempDesire()));
+			
+			this.view.getLblTempc().setText(tempInt);
+			this.view.getLblTempOut().setText(tempOut);
+			this.view.getLblTempDsire().setText(tempDsr);
+			this.view.getLblHum().setText(humInt);
+			this.view.getLblPointDeRose().setText(pointRosee);
 
 			updatePower();
 			
 			//this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
 
 		}
+	}
+
+	private float calculRosee(float hum, float temp) {
+		float rosee;
+		
+		rosee = pow(); // (hum/100)(1/8);
+		
+		return rosee;
+		
+		
 	}
 
 	public float checkTemp(float consigne) {
@@ -96,6 +110,9 @@ public class PMFController implements IPMFController {
 	}
 	
 //	private void updateRosee() {
+	
+	
+	
 //		float tdesire = this.model.getTempDesire();
 //		float humid = this.model.getHumInterieure();
 //		float firstpart = 17.27*tdesire;
