@@ -61,7 +61,7 @@ public class PMFView extends JFrame implements IPMFView{
 		
 		
 		dataset = createDateset();
-		chart = ChartFactory.createXYLineChart("Température Extérieure / Température Intérieure", "Temps", "Température (°C)", dataset, PlotOrientation.VERTICAL, true, true, false);
+		chart = ChartFactory.createXYLineChart("Température Extérieure / Température Intérieure", "Temps (s)", "Température (°C)", dataset, PlotOrientation.VERTICAL, true, true, false);
 		chartPanel = new ChartPanel(chart);
 		chartPanel.setBounds(667, 312, 774, 486);
 		contentPane.add(chartPanel);
@@ -193,7 +193,7 @@ public class PMFView extends JFrame implements IPMFView{
 	private void addToChart(float tempInterieure, float tempExterieure) {
 		this.tempInt.add((double) this.iTime, (double) tempInterieure);
 		this.tempOut.add((double) this.iTime, (double) tempExterieure);
-		this.iTime++;
+		this.iTime+=2;
 		//this.datasetSeries.notify();
 		
 	}
