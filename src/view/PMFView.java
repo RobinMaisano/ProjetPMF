@@ -65,30 +65,30 @@ public class PMFView extends JFrame implements IPMFView{
 		chartPanel.setBounds(667, 312, 774, 486);
 		contentPane.add(chartPanel);
 		
-		JLabel lblTempc = new JLabel("Temp \u00B0C : ");
+		lblTempc = new JLabel("Temp \u00B0C : ");
 		lblTempc.setBounds(325, 354, 88, 16);
 		contentPane.add(lblTempc);
 		
-		JLabel lblTempOut = new JLabel("Temp \u00B0C :");
+		lblTempOut = new JLabel("Temp \u00B0C :");
 		lblTempOut.setBounds(671, 100, 103, 27);
 		contentPane.add(lblTempOut);
 		
-		JLabel lblHum = new JLabel("Hum % :");
+		lblHum = new JLabel("Hum % :");
 		lblHum.setBounds(325, 462, 88, 16);
 		contentPane.add(lblHum);
 		
-		JLabel lblTempDsire = new JLabel("Temp d\u00E9sir\u00E9e \u00B0C : ");
+		lblTempDsire = new JLabel("Temp d\u00E9sir\u00E9e \u00B0C : ");
 		lblTempDsire.setBounds(38, 271, 132, 16);
 		contentPane.add(lblTempDsire);
 		
-		JLabel lblWarning = new JLabel("");
+		lblWarning = new JLabel("");
 		lblWarning.setBounds(1038, 26, 300, 265);
 		lblWarning.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWarning.setIcon(new ImageIcon(new ImageIcon("warning.png").getImage().getScaledInstance(300, 265, Image.SCALE_DEFAULT)));
 		lblWarning.setVisible(false);
 		contentPane.add(lblWarning);
 		
-		JLabel lblPointDeRos = new JLabel("Point de ros\u00E9 atteint");
+		lblPointDeRos = new JLabel("Point de ros\u00E9 atteint");
 		lblPointDeRos.setForeground(Color.RED);
 		lblPointDeRos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPointDeRos.setToolTipText("");
@@ -96,15 +96,15 @@ public class PMFView extends JFrame implements IPMFView{
 		lblPointDeRos.setVisible(false);
 		contentPane.add(lblPointDeRos);
 		
-		JButton butPlus = new JButton("+");
+		butPlus = new JButton("+");
 		butPlus.setBounds(50, 221, 97, 37);
 		contentPane.add(butPlus);
 		
-		JButton butMoins = new JButton("-");
+		butMoins = new JButton("-");
 		butMoins.setBounds(50, 300, 97, 37);
 		contentPane.add(butMoins);
 		
-		JLabel icoFrigo = new JLabel("");
+		icoFrigo = new JLabel("");
 		icoFrigo.setBounds(0, 0, 733, 734);
 		icoFrigo.setIcon(new ImageIcon(view.PMFView.class.getResource("/View/fridge.png")));
 		contentPane.add(icoFrigo);
@@ -144,18 +144,18 @@ public class PMFView extends JFrame implements IPMFView{
 	}
 
 	public JButton getButPlus() {
-		return butPlus;
+		return this.butPlus;
 	}
 
 	public JButton getButMoins() {
-		return butMoins;
+		return this.butMoins;
 	}
 
 	public JLabel getIcoFrigo() {
 		return icoFrigo;
 	}
-	
-	public void setVisible(boolean b){
+	@Override
+	public void setVisi(boolean b){
 		this.setVisible(b);
 	}
 
@@ -185,7 +185,7 @@ public class PMFView extends JFrame implements IPMFView{
 		this.tempInt.add((double) this.iTime, (double) tempInterieure);
 		this.tempOut.add((double) this.iTime, (double) tempExterieure);
 		this.iTime++;
-		this.datasetSeries.notify();
+		//this.datasetSeries.notify();
 		
 	}
 	

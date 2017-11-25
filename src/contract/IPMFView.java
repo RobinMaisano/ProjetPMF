@@ -25,7 +25,6 @@ public interface IPMFView {
 	 * Set Visible on the View Frame
 	 * @param b
 	 */
-	public void setVisible(boolean b);
 	
 	/**
 	 * Update chart on the View Frame
@@ -39,5 +38,8 @@ public interface IPMFView {
 	 * @param b
 	 */
 	public void setWarn(boolean b);
+
+
+	void setVisi(boolean b);
 	
 }

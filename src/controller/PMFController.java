@@ -25,13 +25,14 @@ public class PMFController implements IPMFController {
 	}
 
 	public void run() {
-		this.model.addObserver(this);
+		this.model.addObs(this);
 
 		this.view = new PMFView();
+		
 		this.view.getButPlus().addActionListener(this);
 		this.view.getButMoins().addActionListener(this);
-		this.view.setVisible(true);
 
+		view.setVisi(true);
 		Thread thread = new Thread(cad, "threadCAD");
 		thread.start();
 
@@ -40,10 +41,11 @@ public class PMFController implements IPMFController {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton button = (JButton) e.getSource();
-		if (button.getName().equals("butPlus")) {
+		System.out.println(button.getText());
+		if (button.getText().equals("+")) {
 			this.model.setTempDesire(checkTemp(this.model.getTempDesire() + 1));
 			this.view.getLblTempDsire().setText(String.format("Temp désirée : %.2f °C", this.model.getTempDesire()));
-		} else if (button.getName().equals("butMoins")) {
+		} else if (button.getText().equals("-")) {
 			this.model.setTempDesire(checkTemp(this.model.getTempDesire() - 1));
 			this.view.getLblTempDsire().setText(String.format("Temp désirée : %.2f °C", this.model.getTempDesire()));
 		} else {
@@ -72,7 +74,7 @@ public class PMFController implements IPMFController {
 
 			updatePower();
 			
-			this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
+			//this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
 
 		}
 	}
@@ -80,8 +82,8 @@ public class PMFController implements IPMFController {
 	public float checkTemp(float consigne) {
 		float mini = 5, maxi = 20;
 		if (mini < consigne && consigne < maxi) {return consigne;}
-		else if (mini > consigne) {return mini;}
-		else if (maxi < consigne) {return maxi;} 
+		else if (mini >= consigne) {return mini;}
+		else if (maxi <= consigne) {return maxi;} 
 		else return 18;
 	}
 	

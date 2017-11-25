@@ -50,9 +50,10 @@ public class PMFCAD implements IPMFCAD {
 	private void updateData(InputStream in) {
 		byte[] buffer = new byte[1024];
 		int len = -1;
+		String data = "";
 		try {
 			while ((len = in.read(buffer)) > -1) {
-				String data = new String(buffer, 0, len);
+				data = new String(buffer, 0, len);
 				String[] dataElements = data.split(";");
 
 				Thread.sleep(longWaitTime);
@@ -69,6 +70,7 @@ public class PMFCAD implements IPMFCAD {
 				}
 			}
 		} catch (Exception e) {
+			System.out.println(data);
 			e.printStackTrace();
 		}
 	}

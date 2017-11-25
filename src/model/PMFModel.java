@@ -45,7 +45,7 @@ public class PMFModel extends Observable implements IPMFModel{
 		this.tempDsir = tempDsir;
 	}
 	@Override
-	public void addObserver(Observer o){
+	public void addObs(Observer o){
 		this.addObserver(o);
 	}
 	@Override
