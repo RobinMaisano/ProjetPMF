@@ -79,7 +79,8 @@ public class PMFView extends JFrame implements IPMFView{
 		contentPane.add(lblHum);
 		
 		lblTempDsire = new JLabel("Temp d\u00E9sir\u00E9e \u00B0C : ");
-		lblTempDsire.setBounds(38, 271, 132, 16);
+		lblTempDsire.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTempDsire.setBounds(21, 269, 152, 16);
 		contentPane.add(lblTempDsire);
 		
 		lblPointDeRose = new JLabel("Point de ros\u00E9e :");
