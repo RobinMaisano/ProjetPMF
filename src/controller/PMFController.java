@@ -53,9 +53,9 @@ public class PMFController implements IPMFController {
 			return;
 		}
 		
-	//	updateRosee();
+	//TODO	updateRosee();
 		
-		updatePower();
+	//TODO	updatePower();
 		
 	}
 
@@ -68,17 +68,17 @@ public class PMFController implements IPMFController {
 			String tempDsr = String.format("Temp désirée : %.2f °C", this.model.getTempDesire());
 			String humInt = String.format("Hum : %.2f %%", this.model.getHumInterieure());
 			
-			String pointRosee = String.format("Point de rosée à : %.2f °C", calculRosee(this.model.getHumInterieure(), this.model.getTempDesire()));
+		//TODO	String pointRosee = String.format("Point de rosée à : %.2f °C", calculRosee(this.model.getHumInterieure(), this.model.getTempDesire()));
 			
 			this.view.getLblTempc().setText(tempInt);
 			this.view.getLblTempOut().setText(tempOut);
 			this.view.getLblTempDsire().setText(tempDsr);
 			this.view.getLblHum().setText(humInt);
-			this.view.getLblPointDeRose().setText(pointRosee);
+		//TODO	this.view.getLblPointDeRose().setText(pointRosee);
 
 			updatePower();
 			
-			//this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
+			this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
 
 		}
 	}

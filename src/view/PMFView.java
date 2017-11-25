@@ -176,10 +176,10 @@ public class PMFView extends JFrame implements IPMFView{
 		
 			addToChart(tempInterieure, tempExterieure);
 			
-			if (this.iTime<25) {
-				this.tempInt.remove(1);
-				this.tempOut.remove(1);
-				this.datasetSeries.notify();
+			if (this.iTime>25) {
+				this.tempInt.remove(0);
+				this.tempOut.remove(0);
+				
 			}
 		
 	}
