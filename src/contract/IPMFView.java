@@ -21,10 +21,7 @@ public interface IPMFView {
 
 	public JLabel getLblTempDsire();
 	
-	/**
-	 * Set Visible on the View Frame
-	 * @param b
-	 */
+	public JLabel getLblPointDeRose();
 	
 	/**
 	 * Update chart on the View Frame
@@ -34,12 +31,15 @@ public interface IPMFView {
 	public void updateGraph(float tempInterieure, float tempExterieure);
 	
 	/**
-	 * Set On Warning message
+	 * Set On or Off Power icon
 	 * @param b
 	 */
-	public void setWarn(boolean b);
+	public void setPower(boolean b);
 
-
+	/**
+	 * Set Visible on the View Frame
+	 * @param b
+	 */
 	void setVisi(boolean b);
 	
 }
