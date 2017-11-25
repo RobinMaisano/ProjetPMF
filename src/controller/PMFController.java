@@ -82,8 +82,10 @@ public class PMFController implements IPMFController {
 	}
 
 	private void updateRosee(float hum, float temp) {
-		
-		float rosee = (float) (Math.pow(hum/100, 1/8)*(112+(0.9*temp))+(0.1*temp) - 112);
+		float hum100 = hum/100;
+		float temp09 = (float) (0.9*temp);
+		float temp01 = (float) (0.1*temp);
+		float rosee = (float) ((Math.pow((hum100), 0.125)*(112+(temp09))+(temp01) - 112));
 		String pointRosee = String.format("Point de rosée à : %.2f °C", rosee);
 		this.view.getLblPointDeRose().setText(pointRosee);
 	}
