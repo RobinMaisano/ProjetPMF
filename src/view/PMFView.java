@@ -32,8 +32,6 @@ public class PMFView extends JFrame implements IPMFView{
 	private JLabel lblTempOut;
 	private JLabel lblHum;
 	private JLabel lblTempDsire;
-	private JLabel lblWarning;
-	private JLabel lblPointDeRos;
 	private JButton butPlus;
 	private JButton butMoins;
 	private JLabel icoFrigo;
@@ -44,6 +42,9 @@ public class PMFView extends JFrame implements IPMFView{
 	private final XYSeries tempOut = new XYSeries("Temp Ext");
 	private final XYSeriesCollection datasetSeries = new XYSeriesCollection();
 	private Integer iTime = 1;
+	private JLabel lblPowerOn;
+	private JLabel lblPowerOff;
+	private JLabel lblPointDeRose;
 	
 
 	/**
@@ -66,35 +67,25 @@ public class PMFView extends JFrame implements IPMFView{
 		contentPane.add(chartPanel);
 		
 		lblTempc = new JLabel("Temp \u00B0C : ");
-		lblTempc.setBounds(325, 354, 88, 16);
+		lblTempc.setBounds(325, 354, 117, 16);
 		contentPane.add(lblTempc);
 		
 		lblTempOut = new JLabel("Temp \u00B0C :");
-		lblTempOut.setBounds(671, 100, 103, 27);
+		lblTempOut.setBounds(671, 100, 132, 27);
 		contentPane.add(lblTempOut);
 		
 		lblHum = new JLabel("Hum % :");
-		lblHum.setBounds(325, 462, 88, 16);
+		lblHum.setBounds(325, 462, 117, 16);
 		contentPane.add(lblHum);
 		
 		lblTempDsire = new JLabel("Temp d\u00E9sir\u00E9e \u00B0C : ");
 		lblTempDsire.setBounds(38, 271, 132, 16);
 		contentPane.add(lblTempDsire);
 		
-		lblWarning = new JLabel("");
-		lblWarning.setBounds(1038, 26, 300, 265);
-		lblWarning.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWarning.setIcon(new ImageIcon(new ImageIcon("warning.png").getImage().getScaledInstance(300, 265, Image.SCALE_DEFAULT)));
-		lblWarning.setVisible(false);
-		contentPane.add(lblWarning);
-		
-		lblPointDeRos = new JLabel("Point de ros\u00E9 atteint");
-		lblPointDeRos.setForeground(Color.RED);
-		lblPointDeRos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPointDeRos.setToolTipText("");
-		lblPointDeRos.setBounds(1128, 153, 121, 37);
-		lblPointDeRos.setVisible(false);
-		contentPane.add(lblPointDeRos);
+		lblPointDeRose = new JLabel("Point de ros\u00E9e :");
+		lblPointDeRose.setBounds(671, 179, 162, 16);
+		lblPointDeRose.setVisible(false);
+		contentPane.add(lblPointDeRose);
 		
 		butPlus = new JButton("+");
 		butPlus.setBounds(50, 221, 97, 37);
@@ -103,6 +94,18 @@ public class PMFView extends JFrame implements IPMFView{
 		butMoins = new JButton("-");
 		butMoins.setBounds(50, 300, 97, 37);
 		contentPane.add(butMoins);
+		
+		lblPowerOn = new JLabel("");
+		lblPowerOn.setBounds(33, 418, 113, 265);
+		lblPowerOn.setIcon(new ImageIcon(view.PMFView.class.getResource("/View/powerOn.png")));
+		lblPowerOn.setVisible(false);
+		contentPane.add(lblPowerOn);
+		
+		lblPowerOff = new JLabel("");
+		lblPowerOff.setBounds(33, 418, 113, 265);
+		lblPowerOff.setIcon(new ImageIcon(view.PMFView.class.getResource("/View/powerOff.png")));
+		lblPowerOff.setVisible(false);
+		contentPane.add(lblPowerOff);
 		
 		icoFrigo = new JLabel("");
 		icoFrigo.setBounds(0, 0, 733, 734);
@@ -154,6 +157,11 @@ public class PMFView extends JFrame implements IPMFView{
 	public JLabel getIcoFrigo() {
 		return icoFrigo;
 	}
+	
+	public JLabel getLblPointDeRose() {
+		return lblPointDeRose;
+	}
+
 	@Override
 	public void setVisi(boolean b){
 		this.setVisible(b);
@@ -190,8 +198,8 @@ public class PMFView extends JFrame implements IPMFView{
 	}
 	
 	@Override
-	public void setWarn(boolean b) {
-		this.lblPointDeRos.setVisible(b);
-		this.lblWarning.setVisible(b);
+	public void setPower(boolean b) {
+		this.lblPowerOff.setVisible(!b);
+		this.lblPowerOn.setVisible(b);
 	}
 }
