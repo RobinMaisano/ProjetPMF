@@ -17,8 +17,8 @@ public class PMFModel extends Observable implements IPMFModel{
 		super();
 		this.tempInterieur = 0;
 		this.tempExterieure = 0;
-		this.humInterieur = 0;
-		this.tempDsir = 0;
+		this.humInterieur = 20;
+		this.tempDsir = 15;
 	}
 	@Override
 	public float getTempInterieure() {

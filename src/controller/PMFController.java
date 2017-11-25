@@ -88,7 +88,7 @@ public class PMFController implements IPMFController {
 	}
 	
 	public void updatePower(){
-		if(this.model.getTempDesire() > this.model.getTempInterieure()+0.2){
+		if(this.model.getTempDesire() < this.model.getTempInterieure()+0.2){
 			this.cad.setPower(1);
 		}else{
 			this.cad.setPower(0);
