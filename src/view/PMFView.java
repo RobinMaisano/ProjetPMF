@@ -84,7 +84,7 @@ public class PMFView extends JFrame implements IPMFView{
 		
 		lblPointDeRose = new JLabel("Point de ros\u00E9e :");
 		lblPointDeRose.setBounds(671, 179, 162, 16);
-		lblPointDeRose.setVisible(false);
+		//lblPointDeRose.setVisible(false);
 		contentPane.add(lblPointDeRose);
 		
 		butPlus = new JButton("+");

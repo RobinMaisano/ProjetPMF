@@ -53,9 +53,9 @@ public class PMFController implements IPMFController {
 			return;
 		}
 		
-	//TODO	updateRosee();
+		updateRosee(this.model.getHumInterieure(), this.model.getTempDesire());
 		
-	//TODO	updatePower();
+		updatePower();
 		
 	}
 
@@ -68,14 +68,12 @@ public class PMFController implements IPMFController {
 			String tempDsr = String.format("Temp désirée : %.2f °C", this.model.getTempDesire());
 			String humInt = String.format("Hum : %.2f %%", this.model.getHumInterieure());
 			
-		//TODO	String pointRosee = String.format("Point de rosée à : %.2f °C", calculRosee(this.model.getHumInterieure(), this.model.getTempDesire()));
-			
 			this.view.getLblTempc().setText(tempInt);
 			this.view.getLblTempOut().setText(tempOut);
 			this.view.getLblTempDsire().setText(tempDsr);
 			this.view.getLblHum().setText(humInt);
-		//TODO	this.view.getLblPointDeRose().setText(pointRosee);
 
+			updateRosee(this.model.getHumInterieure(), this.model.getTempDesire());
 			updatePower();
 			
 			this.view.updateGraph(this.model.getTempInterieure(), this.model.getTempExterieure());
@@ -83,14 +81,11 @@ public class PMFController implements IPMFController {
 		}
 	}
 
-	private float calculRosee(float hum, float temp) {
-		float rosee;
+	private void updateRosee(float hum, float temp) {
 		
-		rosee = pow(); // (hum/100)(1/8);
-		
-		return rosee;
-		
-		
+		float rosee = (float) (Math.pow(hum/100, 1/8)*(112+(0.9*temp))+(0.1*temp) - 112);
+		String pointRosee = String.format("Point de rosée à : %.2f °C", rosee);
+		this.view.getLblPointDeRose().setText(pointRosee);
 	}
 
 	public float checkTemp(float consigne) {
@@ -104,19 +99,10 @@ public class PMFController implements IPMFController {
 	public void updatePower(){
 		if(this.model.getTempDesire() < this.model.getTempInterieure()+0.2){
 			this.cad.setPower(1);
+			this.view.setPower(true);
 		}else{
 			this.cad.setPower(0);
+			this.view.setPower(false);
 		}
-	}
-	
-//	private void updateRosee() {
-	
-	
-	
-//		float tdesire = this.model.getTempDesire();
-//		float humid = this.model.getHumInterieure();
-//		float firstpart = 17.27*tdesire;
-//		float tRosee = (237,7 * ((17.27*tdesire)/(237.7+tdesire)+ log(humid)))/(17.27-((17.27*tdesire)/(237.7+tdesire)+log(humid)));
-//	}
-	
+	}	
 }
