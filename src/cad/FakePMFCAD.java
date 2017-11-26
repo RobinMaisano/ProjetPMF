@@ -7,11 +7,19 @@ public class FakePMFCAD implements IPMFCAD {
 
 	private IPMFModel model;
 	private int power;
-
+	/**
+	 * Constructeur Fake CAD
+	 * @param model Modele a modifier
+	 */
 	public FakePMFCAD(IPMFModel model) {
 		this.model = model;
 	}
-
+	/**
+	 * Laisse le ctrl tranquille pendant 2 secondes
+	 * Genère 3 nouvelles donnees
+	 * Fait vérifier le modèle quand a la nouveauté de ces donnees
+	 * Retourne la puissance devant etre delivree au Peltier
+	 */
 	@Override
 	public void run() {
 		while (Boolean.TRUE) {
@@ -34,7 +42,9 @@ public class FakePMFCAD implements IPMFCAD {
 		}
 
 	}
-
+	/**
+	 * Definie la valeur de la puissance devant etre envoye au Peltier
+	 */
 	@Override
 	public void setPower(int power) {
 		this.power = power;
